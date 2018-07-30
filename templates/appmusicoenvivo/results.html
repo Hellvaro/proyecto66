@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for banda in filter.qs %}
+    <li>{{ banda.nombreBanda }} </li>
+  {% endfor %}
+
+{% endblock %}

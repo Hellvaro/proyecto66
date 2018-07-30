@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+<main>
+            <div id="banner">
+                <div class="bandasdest">
+
+                    <div class="card" style="max-width: 45rem;">
+                      <div class="card-header">
+                          <h4><b>Bandas Destacadas</b></h4>
+                      </div>
+
+                      <div class="card-body" style="">
+                        {% if bandabenef %}
+                            <div class="row">
+                                {% for banda in bandabenef %}
+{#                                <div class="card" id="card3">#}
+{#                                        {% if banda.imagenBanda %}#}
+{#                                        <img src="{{ banda.imagenBanda.url }}" class="card-img-top" style="width: 330px; height: 200px;" alt="Card image cap"/>#}
+{#                                        {% else %}#}
+{#                                            <img src="/media/nofoto.jpg" style="width: 286px; height: 180px;"/>#}
+{#                                        {% endif %}#}
+{##}
+{#                                      <div class="card-body">#}
+{#                                        <h5 class="card-title"><strong>{{banda.nombreBanda}}</strong></h5>#}
+{#                                          <a href="{% url 'bandadetalle' banda.id %}" class="btn btn-primary">Ver más</a>#}
+{#                                      </div>#}
+{#                                </div>    <br>#}
+
+                                    <div class="probandoweas">
+                                    <img src="{{ banda.imagenBanda.url }}" class="rounded" style="width: 300px; height: 250px;"alt="Card image cap"/><br><br>
+                                        <h5 class="card-title"><strong>{{banda.nombreBanda}}</strong></h5>
+                                          <a href="{% url 'bandadetalle' banda.id %}" class="btn btn-primary" style="border-radius: 7px">Ver más</a>
+                                    </div>
+                                {% endfor %}
+                        {% else %}
+                            <p>La sección de bandas destacadas, es un servicio Premium de músico en vivo, el cual consiste en mostrar un perfil de banda en esta sección. </p>
+                            <p>Para obtener este servicio e información, clic en el botón:</p>
+                            <a href="{% url 'servicios' %}" class="btn btn-primary" style="border-radius: 7px">Servicios</a>
+                        {% endif %}
+                        </div>
+                      </div>
+                    </div>
+                </div>
+
+                <div class="estadisticas">
+                    <div class="card border-primary mb-3" style="max-width: 18rem;">
+{#                        <div class="card-header"><h5><b>Total de Registros</b></h5></div>#}
+                            <div class="card-body">
+                                <h5 class="card-title"><b>Total de Registros</b></h5>
+                            <p class="card-text">
+                                <h5><span class="badge badge-primary">
+                                    Bandas Registradas <span class="badge badge-light">
+                                    {{ totalbandas.count }}</span></span></h5>
+                                <h5><span class="badge badge-primary">
+                                    Musicos Registrados <span class="badge badge-light">
+                                    {{ totalmusicos.count }}</span></span></h5>
+                                <h5><span class="badge badge-primary">
+                                    Locales Registrados <span class="badge badge-light">
+                                    {{ totallocales.count }}</span></span></h5>
+                                <h5><span class="badge badge-primary">
+                                    Usuarios Registrados <span class="badge badge-light">
+                                    {{ usuarios.count }}</span></span></h5>
+                            </p>
+                            </div>
+                    </div>
+                </div>
+
+                <div class="dona">
+                    <div class="card border-success mb-3" style="max-width: 15rem;">
+{#                        <div class="card-header"><h5><b>Total de Registros</b></h5></div>#}
+                            <div class="card-body">
+                                <h5 class="card-title"><b>Donaciones</b></h5>
+                            <p class="card-text">
+                                Tu donación es importante para que Musicoenvivo permanezca con vida.<br>
+                                Ayúdanos para que el sitio sea cada día mas grande y nuevos músicos se integren.
+                            </p>
+                            <a href="{% url 'donaciones' %}" class="btn btn-success"> Donar </a>
+                            </div>
+                    </div>
+                </div>
+			</div>
+
+			<section id="bienvenidos">
+				<h2>Bienvenidos a Musico En Vivo</h2>
+				<p>Este sitio web ha sido diseñado para ofrecer a personas que se  desenvuelvan en el área de la música, un espacio para obtener contactos con el fin de poder
+            realizar sus proyectos</p>
+			</section>
+
+			<section id="perfiles">
+				<h3>Ultimas bandas agregadas</h3><br>
+				<div class="contenedor">
+					<article>
+                        {% if bandas %}
+                            <div class="row">
+
+                                {% for banda in bandas %}
+                                <div class="card" id="card2">
+                                        {% if banda.imagenBanda %}
+                                        <img src="{{ banda.imagenBanda.url }}" class="card-img-top" style="width: 180px; height: 180px;" alt="Card image cap"/>
+                                        {% else %}
+                                            <img src="/media/nofoto.jpg" style="width: 286px; height: 180px;"/>
+                                        {% endif %}
+
+                                      <div class="card-body">
+                                        <h5 class="card-title"><strong>{{banda.nombreBanda}}</strong></h5>
+                                          <a href="{% url 'bandadetalle' banda.id %}" class="btn btn-primary">Ver más</a>
+                                      </div>
+
+                                </div><br>
+                                {% endfor %}
+                                </div>
+                        {% endif %}
+					</article>
+				</div>
+
+			</section>
+
+			<section id="perfiles">
+				<h3>Ultimos Musicos Agregados</h3><br>
+				<div class="contenedor">
+                    <article>
+                        {% if musicos %}
+                            <div class="row">
+
+                                {% for musico in musicos %}
+                                <div class="card" id="card2">
+                                        {% if musico.imagenMusico %}
+                                        <img src="{{ musico.imagenMusico.url }}" class="card-img-top" style="width: 180px; height: 180px;" alt="Card image cap"/>
+                                        {% else %}
+                                            <img src="/media/nofoto.jpg" style="width: 180px; height: 180px;"/>
+                                        {% endif %}
+
+                                      <div class="card-body">
+                                        <h5 class="card-title"><strong>{{musico.nombreMusico}} {{ musico.apellido }}</strong></h5>
+                                          <a href="{% url 'musicodetalle' musico.id %}" class="btn btn-primary">Ver más</a>
+                                      </div>
+
+                                </div><br>
+                                {% endfor %}
+                                </div>
+                            {% else %}
+                            <br><br><br><br><br><br><br>
+                        {% endif %}
+
+					</article>
+				</div>
+			</section>
+
+
+
+		</main>
+{% endblock %}
+

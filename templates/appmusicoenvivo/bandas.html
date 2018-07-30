@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block content %}
+<main>
+<div class="title"><br>
+<h1>Bandas Registradas</h1>
+
+</div><br><br><br>
+{% if object_list  %}
+
+
+<div class="row">
+
+{% for banda in object_list %}
+<div class="card" id="card">
+        {% if banda.imagenBanda %}
+        <img src="{{ banda.imagenBanda.url }}" class="card-img-top" style="width: 286px; height: 180px;" alt="Card image cap"/>
+        {% else %}
+            <img src="/media/nofoto.jpg" style="width: 286px; height: 180px;"/>
+        {% endif %}
+
+      <div class="card-body">
+        <h5 class="card-title"><strong>{{banda.nombreBanda}}</strong></h5>
+
+          <p class="card-text">Comuna: {{ banda.comuna }}</p>
+          <p class="card-text">Estilo: {% for style in banda.estilo.all %}{{ style }}{% endfor %}</p>
+            <p class="card-text">Año Formacion: {{ banda.anioFormacion }}</p>
+          <a href="{% url 'bandadetalle' banda.id %}" class="btn btn-primary">Ver más</a>
+      </div>
+
+</div><br>
+{% endfor %}
+</div>
+
+{% else %}
+    <h1>No se encontraron registros de Bandas</h1>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+{% endif %}
+
+<ul class="pagination">
+    <li class="page-item">
+        {% if page_obj.has_previous %}
+        <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+        {% endif %}
+    </li>
+    <li class="page-item">
+        {% if page_obj.has_next %}
+        <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+        {% endif %}
+    </li>
+</ul>
+<br>
+</main>
+{% endblock %}
+

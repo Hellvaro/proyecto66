@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="perfil">
+<h1>Perfil Musico</h1>
+<div >
+    <h3>Bienvenido a tu perfil de musico</h3>
+    <table class ="table table-borderer">
+        {% if object_list %}
+
+        <thead>
+            <tr>
+                <td>Id Usuario</td>
+                <td>Nombre</td>
+                <td>Apellido</td>
+                <td>Comuna</td>
+                <td>Estilo</td>
+                <td>Acciones</td>
+            </tr>
+        </thead>
+        <tbody>
+        {% for musico in object_list %}
+            <tr>
+                <td>{{ musico.id }}</td>
+                <td>{{ musico.nombreMusico }}</td>
+                <td>{{ musico.apellido }}</td>
+                <td>{{ musico.comuna }}</td>
+                <td>{% for obj in musico.estilo.all %}{{ obj }} &nbsp;{% endfor %}</td>
+                <td><a class="btn btn-primary" href="{% url 'editarMusico' musico.id %}">Editar</a></td>
+                <td><a class="btn btn-primary" href="{% url 'eliminarMusico' musico.id %}">Eliminar</a></td>
+            </tr>
+            {% endfor %}
+            {% else %}
+            <p>No hay Perfiles de Musico registrado</p>
+            {% endif %}
+        </tbody>
+    </table>
+    <a href="{% url 'formularioMusico' %}" class="btn btn-success btn-lg" >Crear Musico</a>
+
+</div>
+</div>
+{% endblock %}

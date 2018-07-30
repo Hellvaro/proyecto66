@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <br><br>
+  <form method="get" >
+  <h4>Buscador Bandas</h4>
+    {{ filter.form.as_p }}
+      <br>
+    <button type="submit" class="btn btn-primary" name="buscar" >Buscar</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a class="btn btn-primary" href="{% url 'searchB' %}">Limpiar Formulario</a>
+  </form>
+{% if filter.qs.count == total.count %}
+    <div class="noResults">
+        <p><b>No se encontraron perfiles de banda</b></p>
+    </div>
+{% else %}
+
+    <div class="resultadosBusqueda">
+
+    <h2>Resultados:</h2>
+
+        <table class ="table table-borderer">
+        <thead>
+            <tr>
+                <td>Nombre Banda</td>
+                <td>Estilo</td>
+                <td>Comuna</td>
+                <td>Busca</td>
+                <td>Detalles</td>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for banda in filter.qs %}
+
+            <tr>
+
+                <td>{{ banda.nombreBanda }}</td>
+                <td>{% for obj in banda.estilo.all %}{{ obj }}{% endfor %}</td>
+                <td>{{ banda.comuna }}</td>
+                <td>{% for obj in banda.musicos.all %}{{ obj }}{% endfor %}</td>
+                <td><a href="{% url 'bandadetalle' banda.id %}" class="btn btn-primary">Detalles</a></td>
+            </tr>
+
+            {% endfor %}
+
+
+        </tbody>
+        </table>
+    </div>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<br><br><br>
+{% if local  %}
+
+<div class="col-sm-9">
+    <div class="card" style="width: 55rem; ">
+
+
+          <div class="card-header">
+            <strong>{{ local.nombreLocal }}</strong>
+              <div class="divBuscamusico">
+                  {% if local.buscaBanda == True %}&nbsp;
+                      <h5><span class="badge badge-primary">Busca Banda</span></h5>&nbsp;
+                  {% endif %}
+                  {% if local.buscaMusico == True %}&nbsp;
+                      <h5><span class="badge badge-primary">Busca Musico</span></h5>
+                  {% endif %}
+              </div>
+          </div>
+
+          <div class="card-body">
+          <strong>{{ local.tipo_Local }}</strong><br>
+          {% if local.imagenLocal %}
+            <img class="imagenBanda" src="{{ local.imagenLocal.url }}" style="width: 450px; height: 300px;" />
+          {% else %}
+            <img src="/media/nofoto.jpg" style="width: 286px; height: 180px;"/>
+          {% endif %}
+            Comuna:
+            {{ local.comuna }}<br>
+            Descripcion:
+            {{ local.descripcion }}<br>
+            Contacto:
+            {{ local.contacto }}<br>
+          </div>
+    </div>
+</div><br><br>
+{% endif %}
+
+{% endblock %}

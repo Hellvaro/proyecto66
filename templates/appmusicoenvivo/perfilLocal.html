@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="perfil">
+<h1>Perfil Local</h1>
+<div>
+    <h3>Bienvenido a tu perfil de Local</h3>
+    <table class ="table table-borderer">
+        {% if object_list %}
+
+        <thead>
+            <tr>
+                <td>Id Usuario</td>
+                <td>Nombre</td>
+                <td>Comuna</td>
+                <td>Tipo de Local</td>
+                <td>Acciones</td>
+            </tr>
+        </thead>
+        <tbody>
+        {% for local in object_list %}
+            <tr>
+                <td>{{ local.id }}</td>
+                <td>{{ local.nombreLocal }}</td>
+                <td>{{ local.comuna }}</td>
+                <td>{{ local.tipo_Local }}</td>
+                <td><a class="btn btn-primary" href="{% url 'editarLocal' local.id %}">Editar</a></td>
+                <td><a class="btn btn-primary" href="{% url 'eliminarLocal' local.id %}">Eliminar</a></td>
+            </tr>
+            {% endfor %}
+            {% else %}
+            <p>No hay Perfiles de Banda registrados</p>
+            {% endif %}
+        </tbody>
+    </table>
+
+    <a href="{% url 'formularioLocal' %}" class="btn btn-success btn-lg" >Crear Local</a>
+</div>
+
+</div>
+
+
+{% endblock %}

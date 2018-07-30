@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% if resultado %}
+    <h1>Resultados</h1>
+        {% for banda in resultado %}
+            <div class="col-sm-6">
+                <div class="card" style="width: 18rem; ">
+                        {% if banda.imagenBanda %}
+                        <img src="{{ banda.imagenBanda.url }}" style="width: 286px; height: 180px;"/>
+                        {% else %}
+                            <img src="/media/nofoto.jpg" style="width: 286px; height: 180px;"/>
+                        {% endif %}
+                {#      <img class="card-img-top" src=".../100px180/" alt="Card image cap">#}
+                      <div class="card-body">
+                        <h5 class="card-title"><strong>{{banda.nombreBanda}}</strong></h5>
+                {#        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>#}
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Comuna: {{ banda.comuna }}</li>
+                                <li class="list-group-item">
+                                    Estilo:
+                                    {% for style in banda.estilo.all %}
+                                    {{ style }}
+                                    {% endfor %}
+                                </li>
+                                <li class="list-group-item">Año Formación: {{ banda.anioFormacion }}</li>
+                            </ul><br>
+                          <a href="{% url 'bandadetalle' banda.id %}" class="btn btn-primary">Ver más</a>
+                      </div>
+
+                </div><br>
+            </div>
+        {% endfor %}
+{% endif %}
+{% endblock %}

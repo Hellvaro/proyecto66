@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+{#<div class="regisExito">#}
+{#    <h1> </h1> <br><br>#}
+{#    <p>Gracias por registrarte en Musico En Vivo</p>#}
+{#    <h3>¿Estás listo para ingresar? <br> Click en el boton: </h3>#}
+{#    <a class="button" href="{% url 'menuUsuario' %}">Ingresar</a>#}
+{#</div>#}
+<div class="succes">
+    <div class="card border-success mb-3" style="max-width: 25rem;">
+
+    <div class="card-body text-success">
+        <h5 class="card-title">Registro de usuario exitoso!</h5>
+         <p class="card-text">Puedes ingresar a Musico En Vivo mediante el siguiente boton: </p>
+    </div>
+    <div class="botonSucces">
+        <a href="{% url 'login' %}" class="btn btn-success">Ingresar</a>
+    </div><br>
+</div>
+
+</div>
+
+{% endblock %}

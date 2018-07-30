@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% block content %}
+<br><br><br>
+{% load embed_video_tags %}
+{% if musico  %}
+
+<div class="col-sm-9">
+    <div class="card" style="width: 55rem; ">
+
+        <div class="card text-left">
+          <div class="card-header">
+            <strong>{{ musico.nombreMusico }} {{ musico.apellido }}</strong>
+              <div class="disponibilidad">
+                  {% if musico.dispInmediata == True %}
+                      Disponibilidad Inmediata:
+                      <a class="icon-ok" ></a>&nbsp;
+                  {% endif %}
+                  {% if musico.buscaBanda == True %}
+                      <h5><span class="badge badge-info">Busca Banda</span></h5>&nbsp;
+                  {% endif %}
+                  {% if musico.clasesParticulares == True %}
+                        <h5><span class="badge badge-primary">Imparte Clases</span></h5>
+                  {% endif %}
+              </div>
+          </div>
+
+          <div class="card-body">
+              <div class="instrumentosMusico">
+                  {% for instrumentos in musico.instrumento.all %}
+                    <h7><strong class="strongMusico">{{ instrumentos }}&nbsp;</strong></h7>
+                  {% endfor %}
+              </div><br>
+              <div class="imagenBanda">
+                {% if musico.imagenMusico %}
+                    <img  src="{{ musico.imagenMusico.url }}" style="width: 450px; height: 300px;" />
+                {% else %}
+                    <img src="/media/nofoto.jpg" style="width: 286px; height: 180px;"/>
+                {% endif %}
+              </div>
+            <b>Comuna:</b>
+            {{ musico.comuna }}<br>
+              <b>Estilo:</b>
+            {% for estilo in musico.estilo.all %}
+            {{ estilo }}.
+            {% endfor %}<br>
+              <b>Horarios de Ensayo:</b><br>
+            {{ musico.dispEnsayo }}<br>
+              <b>Horarios para dar Conciertos:</b><br>
+            {{ musico.dispConciertos}}<br>
+            {% if musico.equipado == True %}
+            <b>Equipado: </b> <a class="icon-ok" ></a><br>
+            <b>Equipo:</b><br>
+            {{ musico.descripcionEquipo|linebreaksbr }}<br>
+            {% endif %}
+              <b>Años de Experiencia:</b>
+            {{ musico.aniosExperiencia }}<br>
+            <b>Contacto:</b>
+            {{ musico.contacto }}<br>
+            <b>Descripcion:</b><br>
+            {{ musico.descripcionPersonal|linebreaksbr }}
+
+          </div>
+          <div class="card-footer text-muted">
+              <div class="videoBanda">
+                  Video:<br><br>
+
+                  {% video musico.videoMusico as my_video %}
+                      <iframe width="440" height="300" src="{{ my_video.url }}" frameborder="0"
+                              allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                  {% endvideo %}
+              </div>
+              <div class="historiaBanda">
+                  <b>Experiencia y Formacion:</b><br>
+                  {{ musico.expFormacion }}
+              </div>
+
+              <div class="discografiaBanda">
+                  <b>Influencias:</b><br>
+                  {{ musico.influencias| linebreaks }}
+              </div><br>
+          </div>
+        </div>
+    </div>
+</div><br><br>
+{% endif %}
+
+{% endblock %}

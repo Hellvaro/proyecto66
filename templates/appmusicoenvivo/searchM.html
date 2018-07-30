@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <br><br>
+
+ <form method="get" >
+  <h4>Buscador Musicos</h4>
+    {{ filter.form.as_p }}
+    <button type="submit" class="btn btn-primary" name="buscar"  >Buscar</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a class="btn btn-primary" href="{% url 'searchM' %}">Limpiar Formulario</a>
+
+  </form>
+
+{% if filter.qs.count == total.count %}
+    <div class="noResults">
+    <p><b>No se encontraron perfiles de Musico</b> </p>
+    </div>
+
+{% else %}
+
+
+<div class="resultadosBusquedaM">
+    <table class ="table table-borderer">
+
+    <thead>
+        <tr>
+            <td>Nombre Musico</td>
+            <td>Estilo</td>
+            <td>Comuna</td>
+            <td>Instrumento</td>
+            <td>Años Experiencia</td>
+            <td>Detalles</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for musico in filter.qs %}
+        <tr>
+
+            <td>{{ musico.nombreMusico }}{{ musico.apellido }}</td>
+            <td>{% for obj in musico.estilo.all %}{{ obj }}{% endfor %}</td>
+            <td>{{ musico.comuna }}</td>
+            <td>{% for obj in musico.instrumento.all %}{{ obj }}{% endfor %}</td>
+            <td>{{ musico.aniosExperiencia }}</td>
+            <td><a href="{% url 'musicodetalle' musico.id %}" class="btn btn-primary">Detalles</a></td>
+        </tr>
+
+        {% endfor %}
+
+    </tbody>
+    </table>
+</div>
+{% endif %}
+{% endblock %}

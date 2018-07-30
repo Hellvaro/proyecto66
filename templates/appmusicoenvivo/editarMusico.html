@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="contenedor">
+            <h2>Editar Musico</h2>
+        <!-- Contenido Aqui -->
+
+        <form action="{% url 'editarMusico' musico.id %}" method="post">{% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Registrar"/>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<form method="post" class="eliminarPerfil">{% csrf_token %}
+    <div class="card border-danger mb-3" style="max-width: 18rem;">
+          <div class="card-header"><h5 style="color: black">Eliminar Perfil</h5> </div>
+          <div class="card-body text-danger">
+            <h5 class="card-title">Perfil de {{ object.nombreLocal }}</h5>
+            <p class="card-text">¿Estas seguro de eliminar el perfil?</p>
+          </div>
+            <div class="card-footer text-muted">
+                <div class="botonesEliminar">
+                    <button class="btn btn-danger" type="submit">  Si  </button>&nbsp;&nbsp;
+                    <a class="btn btn-secondary" href="{% url 'perfillocal' %}">Cancelar</a>
+                </div>
+
+            </div>
+    </div>
+</form>
+{% endblock %}

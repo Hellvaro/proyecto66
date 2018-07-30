@@ -1,0 +1,61 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<title>Músico En Vivo</title>
+		<meta charset="UFT-8">
+		<meta name="viewport" content="width= device-width, user-scalable= no, initial-scale=1, maximum-scale=1, minimum-scale=1">
+		<link rel="stylesheet" href="{% static 'css/fontello.css' %}">
+		<link rel="stylesheet" href="{% static 'css/estilo.css' %}">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+	</head>
+    <main>
+	<body>
+		<header>
+			<div class="contenedor">
+				<h1 class="icon-note-beamed" id="navheader">Músico En Vivo</h1>
+
+				<nav class="navegacion">
+                    <ul class="menu">
+                        <li><a href={% url 'index' %}>Inicio</a></li>
+                        <li><a href={% url 'bandas' %}>Bandas</a></li>
+                        <li><a href={% url 'musicos' %}>Musicos</a></li>
+                        <li><a href={% url 'locales' %}>Locales</a></li>
+                        <li><a href={% url 'busqueda' %}>Busqueda</a></li>
+                        {% if user.is_authenticated %}
+                        <li><a href={% url 'editarusuario' user.id%}>{{user.username|capfirst}}</a>
+                            <ul class="submenu">
+                                <a href="{% url 'menuUsuario' %}">Perfiles</a>
+                                <a class="salir" href={% url 'logout1' %}>Salir</a>
+                            </ul>
+                        </li>
+                        {% else %}
+                         <a href="{% url 'login' %}">Login</a>
+                        {% endif %}
+                    </ul>
+				</nav>
+			</div>
+		</header>
+
+        {% block content %}
+        {% endblock %}
+
+		<footer>
+			<div class="contenedor">
+
+				<a href="{% url 'contacto' %}">Contacto</a>
+				<a href="">Quienes Somos</a>
+				<a href="">Politica Privacidad</a>
+				<p class="copy">Musico En Vivo &copy; 2018</p>
+				<div class="sociales">
+					<a class="icon-facebook-official" href="#"></a>
+					<a class="icon-instagram-filled" href="#"></a>
+				</div>
+			</div>
+		</footer>
+    </body>
+    </main>
+</html>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>

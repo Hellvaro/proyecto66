@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block content %}
+<br><br><br>
+{% load embed_video_tags %}
+{% if banda  %}
+
+<div class="col-sm-9">
+    <div class="card" style="width: 55rem; ">
+
+
+          <div class="card-header">
+            <strong>{{ banda.nombreBanda }}</strong>
+              <div class="divBuscamusico">
+                    {% if banda.musicos %}
+                      Busca:&nbsp;
+                      {% for musicos in banda.musicos.all %}
+                      <h5><span class="badge badge-primary">{{ musicos }}</span></h5>
+                      {% endfor %}
+                    {% endif %}
+              </div>
+
+          </div>
+
+          <div class="card-body">
+          <strong>Banda de Musica</strong><br><br>
+          <div class="imagenBanda">
+          {% if banda.imagenBanda %}
+            <img  src="{{ banda.imagenBanda.url }}" style="width: 450px; height: 300px;" />
+          {% else %}
+            <img src="/media/nofoto.jpg" style="width: 286px; height: 180px;"/>
+          {% endif %}
+          </div>
+            <b>Estilo:</b>
+            {% for estilo in banda.estilo.all %}
+            {{ estilo }}.
+            {% endfor %}<br>
+              <b>Año de Formación:</b>
+            {{ banda.anioFormacion }}<br>
+            <b>Comuna:</b>
+            {{ banda.comuna }}<br>
+            <b>Miembros:</b>
+            {{ banda.miembros|linebreaks }}<br>
+            <b>Contacto:</b>
+            {{ banda.contacto }}<br>
+
+
+          </div>
+            <div class="descripcion">
+                <b>Descripcion:</b>
+            {{ banda.descripcionBanda |linebreaks}}
+            </div>
+          <div class="card-footer text-muted">
+              <div class="videoBanda">
+                  <b>Video:</b><br><br>
+
+                  {% video banda.videoBanda as my_video %}
+                      <iframe width="440" height="300" src="{{ my_video.url }}" frameborder="0"
+                              allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                  {% endvideo %}
+              </div>
+              <div class="historiaBanda">
+                  <b>Historia:</b><br>
+                  {{ banda.historia|linebreaks }}
+              </div>
+
+              <div class="discografiaBanda">
+                  <b>Discografia:</b><br>
+                  {{ banda.discografia|linebreaks }}
+              </div><br>
+          </div>
+
+    </div>
+</div><br><br>
+{% endif %}
+
+{% endblock %}

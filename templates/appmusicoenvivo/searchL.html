@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <br><br>
+  <form method="get">
+    <h4>Buscador Locales</h4>
+    {{ filter.form.as_p }}
+      <br>
+    <button type="submit" class="btn btn-primary" name="buscar"  >Buscar</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a class="btn btn-primary" href="{% url 'searchL' %}">Limpiar Formulario</a>
+  </form>
+{% if filter.qs.count == total.count %}
+    <div class="noResults">
+    <p><b>No se encontraron perfiles de Local</b> </p>
+    </div>
+{% else %}
+    <div class="resultadosBusqueda">
+        <h2>Resultados:</h2>
+        <table class ="table table-borderer">
+        <thead>
+            <tr>
+                <td>Nombre Local</td>
+                <td>Tipo de Local</td>
+                <td>Comuna</td>
+                <td>Detalles</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for local in filter.qs %}
+            <tr>
+
+                <td>{{ local.nombreLocal }}</td>
+                <td>{{ local.tipo_Local }}</td>
+                <td>{{ local.comuna }}</td>
+                <td><a href="{% url 'localdetalle' local.id %}" class="btn btn-primary">Detalles</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+    </div>
+{% endif %}
+
+{% endblock %}

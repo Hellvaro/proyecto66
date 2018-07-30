@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+    <br><br><br>
+<div class="pagdonacion">
+    <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+      <div class="card-header"><h5><b>Donacion</b></h5></div>
+      <div class="card-body">
+        <h5 class="card-title">Para donar debes:</h5>
+        <p class="card-text">
+            Realizar un deposito bancario a la siguiente cuenta:<br>
+            Banco Santander<br>
+            Tipo de cuenta: Vista<br>
+            Numero de Cuenta: 7003062907<br>
+            Rut:17.681.202-8<br>
+            Email: musicoenvivo66@gmail.com<br>
+        </p>
+      </div>
+        <div class="card-footer">
+            De momento este es el único medio por el cual puedes donar.<br>
+            Próximamente se implementara un sistema más cómodo para el usuario.<br>
+            Muchas gracias por donar. Recuerda que tu aporte contribuye al desarrollo del sitio web.<br>
+            Atte. Músico en Vivo.<br><br>
+
+            <a href="{% url 'index' %}" class="btn btn-success"> Volver al Inicio </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

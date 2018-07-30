@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<main>
+<br><br><br><br>
+<div class = "busqueda">
+<div class="card border-info mb-3" style="max-width: 30rem;">
+    <div class="card-header"><h5><b class="colorBusqueda">Busqueda de Perfiles</b></h5></div>
+  <div class="card-body text-info">
+    <h5 class="card-title">Bienvenido(a) a la busqueda de perfiles.</h5>
+    <p class="card-text">Elige el perfil que deseas buscar:</p>
+      <a class="btn btn-info btn-lg" href="{% url 'searchM' %}"> Musico</a>&nbsp;&nbsp;
+      <a class="btn btn-info btn-lg" href="{% url 'searchB' %}"> Banda</a>&nbsp;&nbsp;
+      <a class="btn btn-info btn-lg" href="{% url 'searchL' %}"> Local</a>
+    </div>
+
+</div>
+</div>
+
+</main>
+
+{% endblock %}

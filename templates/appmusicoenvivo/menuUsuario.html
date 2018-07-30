@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+        <div class="menuUsuario">
+            <h1>Bienvenido a tu Menu de Perfiles</h1><br><br><br>
+
+            <p>En este menú podrás acceder a tres tipos de perfiles:</p>
+            <p><strong>Perfil Músico:</strong> Este perfil contiene tu información personal y
+                tendencias musicales, el cual podrás modificar o eliminar a gusto.</p>
+            <p><strong>Perfil Banda:</strong> Este perfil contiene la información de tu(s) banda(s),
+                el cual podrás eliminar o modificar a gusto.</p>
+            <p><strong>Perfil Local:</strong> Este perfil contiene información de un local
+                (bar, discoteca, pubs, etc.) que tenga intención de organizar o
+                prestar un espacio para realizar presentaciones en vivo de bandas o
+                músicos. Podrás modificar o eliminar el perfil.</p>
+            <p>A continuación podrás seleccionar uno de estos perfiles para iniciar el registro.</p>
+
+
+{#            <h3><u>Selecciona un Perfil</u>:</h3>#}
+{#            <a href="{% url 'perfilbanda' %}" class="btn btn-outline-primary">Banda</a>&nbsp;&nbsp;&nbsp;#}
+{#            <a href="{% url 'perfilmusico' %}" class="btn btn-outline-primary">Musico</a>&nbsp;&nbsp;&nbsp;#}
+{#            <a href="{% url 'perfillocal' %}" class="btn btn-outline-primary">Local</a>#}
+
+        <div class="card text-white bg-dark mb-3" style="max-width: 29rem;">
+
+              <div class="card-body">
+                <div class="tituloblackcard">
+                    <h3 class="card-title">Selecciona un Perfil:</h3><br>
+                </div>
+                <div class="botonesblackcard">
+                    <a href="{% url 'perfilbanda' %}" class="btn btn-outline-primary">Banda</a>&nbsp;&nbsp;&nbsp;
+                    <a href="{% url 'perfilmusico' %}" class="btn btn-outline-primary">Musico</a>&nbsp;&nbsp;&nbsp;
+                    <a href="{% url 'perfillocal' %}" class="btn btn-outline-primary">Local</a>
+                </div><br>
+
+              </div>
+        </div>
+        </div>
+{% endblock %}
