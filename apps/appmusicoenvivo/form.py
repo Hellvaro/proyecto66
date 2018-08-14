@@ -2,14 +2,13 @@ from django import forms
 from apps.appmusicoenvivo.models import Banda,Local,Musico
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from django.utils.safestring import mark_safe
+
 
 class bandaForm(forms.ModelForm):
     class Meta:
         model = Banda
         fields = [
             'usuario',
-            'region',
             'comuna',
             'estilo',
             'musicos',
@@ -25,7 +24,6 @@ class bandaForm(forms.ModelForm):
         ]
         labels ={
             'usuario':'Usuario',
-            'region': 'Region',
             'comuna':'Comuna',
             'estilo':'Estilo',
             'musicos':'¿Buscas musico?',
@@ -48,6 +46,8 @@ class bandaForm(forms.ModelForm):
             'estilo': 'Mantenga pulsado Ctrl y click para seleccionar mas de uno',
             'contacto': 'Email, Whatsapp, Telefono, etc.',
         }
+
+
 class musicoForm(forms.ModelForm):
     class Meta:
         model = Musico
@@ -55,7 +55,6 @@ class musicoForm(forms.ModelForm):
         fields= [
             'usuario',
             'instrumento',
-            'region',
             'comuna',
             'estilo',
             'nombreMusico',
@@ -78,7 +77,6 @@ class musicoForm(forms.ModelForm):
         labels={
             'usuario':'Nombre Usuario',
             'instrumento':'Instrumento',
-            'region':'Region',
             'comuna':'Comuna',
             'estilo':'Estilo Musical',
             'nombreMusico':'Nombre',
@@ -120,7 +118,6 @@ class localForm(forms.ModelForm):
         fields=[
             'usuario',
             'tipo_Local',
-            'region',
             'comuna',
             'nombreLocal',
             'descripcion',
@@ -133,7 +130,6 @@ class localForm(forms.ModelForm):
         labels={
             'usuario':'Nombre Usuario',
             'tipo_Local':'Tipo de Local',
-            'region':'Region',
             'comuna':'Comuna',
             'nombreLocal':'Nombre Local',
             'descripcion':'Descripcion',

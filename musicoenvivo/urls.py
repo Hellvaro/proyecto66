@@ -16,5 +16,6 @@ urlpatterns = [
     #url(r'^logout/', views.logout, name='logout'),
     url(r'^logout1/', logout_then_login, name='logout1'),
     url(r'^', include('apps.appmusicoenvivo.urls')),
+    url(r'^chaining/', include('smart_selects.urls')),
 
 ]

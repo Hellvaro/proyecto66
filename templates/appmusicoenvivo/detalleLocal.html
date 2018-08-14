@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <br><br><br>
+    <main><br>
 {% if local  %}
 
 <div class="col-sm-9">
@@ -21,11 +22,13 @@
 
           <div class="card-body">
           <strong>{{ local.tipo_Local }}</strong><br>
+          <div class="imagenBanda">
           {% if local.imagenLocal %}
             <img class="imagenBanda" src="{{ local.imagenLocal.url }}" style="width: 450px; height: 300px;" />
           {% else %}
             <img src="/media/nofoto.jpg" style="width: 286px; height: 180px;"/>
           {% endif %}
+          </div>
             Comuna:
             {{ local.comuna }}<br>
             Descripcion:
@@ -36,5 +39,5 @@
     </div>
 </div><br><br>
 {% endif %}
-
+</main><br><br><br><br><br><br><br><br>
 {% endblock %}

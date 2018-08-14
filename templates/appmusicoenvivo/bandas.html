@@ -22,7 +22,7 @@
         <h5 class="card-title"><strong>{{banda.nombreBanda}}</strong></h5>
 
           <p class="card-text">Comuna: {{ banda.comuna }}</p>
-          <p class="card-text">Estilo: {% for style in banda.estilo.all %}{{ style }}{% endfor %}</p>
+          <p class="card-text">Estilo: {% for style in banda.estilo.all %}{{ style }}&nbsp;{% endfor %}</p>
             <p class="card-text">Año Formacion: {{ banda.anioFormacion }}</p>
           <a href="{% url 'bandadetalle' banda.id %}" class="btn btn-primary">Ver más</a>
       </div>

@@ -10,23 +10,23 @@
 <div class="row">
 
 {% for local in object_list %}
-<div class="card" id="card">
-        {% if local.imagenLocal %}
-        <img src="{{ local.imagenLocal.url }}" class="card-img-top" style="width: 286px; height: 180px;" alt="Card image cap"/>
-        {% else %}
-            <img src="/media/nofoto.jpg" style="width: 286px; height: 180px;"/>
-        {% endif %}
+    <div class="card" id="card">
+            {% if local.imagenLocal %}
+            <img src="{{ local.imagenLocal.url }}" class="card-img-top" style="width: 286px; height: 180px;" alt="Card image cap"/>
+            {% else %}
+                <img src="/media/nofoto.jpg" style="width: 286px; height: 180px;"/>
+            {% endif %}
 
-      <div class="card-body">
-        <h5 class="card-title"><strong>{{local.nombreLocal}}</strong></h5>
+          <div class="card-body">
+            <h5 class="card-title"><strong>{{local.nombreLocal}}</strong></h5>
 
-          <p class="card-text">Comuna: {{ local.comuna }}</p>
+              <p class="card-text">Comuna: {{ local.comuna }}</p>
 
-          <p class="card-text">Tipo Local: {{ local.tipo_Local }}</p>
-          <a href="{% url 'localdetalle' local.id %}" class="btn btn-primary">Ver más</a>
-      </div>
+              <p class="card-text">Tipo Local: {{ local.tipo_Local }}</p>
+              <a href="{% url 'localdetalle' local.id %}" class="btn btn-primary">Ver más</a>
+          </div>
 
-</div>
+    </div>
 {% endfor %}
 </div>
 {% else %}

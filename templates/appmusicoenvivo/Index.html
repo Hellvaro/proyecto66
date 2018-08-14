@@ -2,7 +2,7 @@
 {% load staticfiles %}
 
 {% block content %}
-<main>
+<main><br>
             <div id="banner">
                 <div class="bandasdest">
 
@@ -34,10 +34,11 @@
                                           <a href="{% url 'bandadetalle' banda.id %}" class="btn btn-primary" style="border-radius: 7px">Ver más</a>
                                     </div>
                                 {% endfor %}
-                        {% else %}
-                            <p>La sección de bandas destacadas, es un servicio Premium de músico en vivo, el cual consiste en mostrar un perfil de banda en esta sección. </p>
-                            <p>Para obtener este servicio e información, clic en el botón:</p>
+                        {% else %}<br>
+                            <p>La sección de bandas destacadas, es un servicio Premium de músico en vivo, el cual consiste en mostrar un perfil de banda en esta sección. </p><br>
+                            <p>Para obtener este servicio e información, clic en el botón:</p><br>
                             <a href="{% url 'servicios' %}" class="btn btn-primary" style="border-radius: 7px">Servicios</a>
+                            <br><br>
                         {% endif %}
                         </div>
                       </div>

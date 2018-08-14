@@ -1,10 +1,13 @@
 {% extends "base.html" %}
+{% load static %}
+
 {% block content %}
         <div class="contenedor">
             <h2>Registro de Banda</h2>
 
 
-        <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+        <form action="/crearbanda/" method="post" enctype="multipart/form-data">{% csrf_token %}
+            {{ form.media.js }}
             {{ form.as_p }}
 
             <input type="submit" value="Registrar"/>

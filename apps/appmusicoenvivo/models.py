@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from embed_video.fields import EmbedVideoField
 
+
 # Create your models here.
 class Instrumento (models.Model):
     nombreInstrumento = models.CharField(max_length=100)
@@ -9,14 +10,7 @@ class Instrumento (models.Model):
     def __str__(self):
         return self.nombreInstrumento
 
-class Region(models.Model):
-    nombreRegion = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.nombreRegion
-
 class Comuna(models.Model):
-        region = models.ForeignKey(Region, on_delete=models.CASCADE)
         nombreComuna = models.CharField(max_length=100)
 
         def __str__(self):
@@ -39,7 +33,6 @@ class Musico (models.Model):
 
     usuario = models.OneToOneField(User, on_delete=models.CASCADE, default=1)
     instrumento = models.ManyToManyField(Instrumento)
-    region = models.ForeignKey(Region,on_delete=models.CASCADE)
     comuna = models.ForeignKey(Comuna, on_delete=models.CASCADE)
     estilo = models.ManyToManyField(Estilo)
     imagenMusico = models.ImageField(upload_to= 'musicos',null=True, blank=True, width_field="width_field",
@@ -71,7 +64,6 @@ class Musico (models.Model):
 
 class Banda (models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE,default=1)
-    region = models.ForeignKey(Region, on_delete=models.CASCADE)
     comuna = models.ForeignKey(Comuna, on_delete=models.CASCADE)
     estilo = models.ManyToManyField(Estilo)
     imagenBanda = models.ImageField(upload_to='bandas' ,null = True,blank=True, width_field="width_field" ,height_field="height_field")
@@ -101,7 +93,6 @@ class Local (models.Model):
     imagenLocal = models.ImageField(upload_to= 'locales', blank=True, width_field="width_field", height_field="height_field")
     width_field = models.IntegerField(default=0)
     height_field = models.IntegerField(default=0)
-    region = models.ForeignKey(Region, on_delete=models.CASCADE)
     comuna = models.ForeignKey(Comuna, on_delete=models.CASCADE)
     nombreLocal = models.CharField(max_length=80)
     descripcion = models.TextField(max_length=700)

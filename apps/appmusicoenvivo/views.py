@@ -6,7 +6,7 @@ from django.views.generic import CreateView
 from django.urls import reverse_lazy
 from apps.appmusicoenvivo.form import registroForm, contactoForm
 from django.views.generic import ListView, UpdateView, DeleteView
-from apps.appmusicoenvivo.models import Banda,Local,Musico, Region, Comuna
+from apps.appmusicoenvivo.models import Banda,Local,Musico,Comuna
 from django.core.mail import EmailMessage
 from .filters import BandaFilter, MusicoFilter, LocalFilter
 
@@ -99,20 +99,30 @@ class userUpdate(UpdateView):
 
 
 #----- Banda ------
-def formularioBanda(request,id=None):
-    if request.method == 'POST':
-        form = bandaForm(request.POST, request.FILES or None)
+# def formularioBanda(request):
+#     if request.method == 'POST':
+#         form = bandaForm(request.POST, request.FILES or None)
+#
+#         if form.is_valid():
+#             variable = form.save()
+#             variable.usuario = request.user
+#             variable.save()
+#             return redirect('perfilexitoso')
+#     else:
+#         form= bandaForm()
+#     return render(request,'appmusicoenvivo/crearBanda.html', {'form':form},)
 
-        if form.is_valid():
-            variable = form.save()
-            variable.usuario = request.user
-            variable.save()
-            return redirect('perfilexitoso')
-    else:
-        form= bandaForm()
-    return render(request,'appmusicoenvivo/crearBanda.html', {'form':form},)
+class formularioBanda(CreateView):
+    model = Banda
+    form_class = bandaForm
+    template_name = 'appmusicoenvivo/crearBanda.html'
 
 
+    def form_valid(self, form):
+        variable = form.save()
+        variable.usuario = self.request.user
+        variable.save()
+        return redirect('perfilexitoso')
 
 def searchB(request):
     banda_list = Banda.objects.all()
@@ -123,7 +133,7 @@ def searchB(request):
 class bandaList(ListView):
     model = Banda
     template_name = 'appmusicoenvivo/bandas.html'
-    paginate_by = 2
+    paginate_by = 6
 
 class bandasPerfil(ListView):
     model = Banda
@@ -152,22 +162,22 @@ def bandaDetalle(request, id=None):
 
 #----- Musico ------
 
-def formularioMusico(request):
-    if request.method == 'POST':
-        form = musicoForm(request.POST, request.FILES or None)
-        if form.is_valid():
-            variable = form.save()
-            variable.usuario = request.user
-            variable.save()
-            return redirect('perfilexitoso')
-    else:
-        form= musicoForm()
-    return render(request,'appmusicoenvivo/crearMusico.html', {'form':form},)
+class formularioMusico(CreateView):
+    model = Musico
+    form_class = musicoForm
+    template_name = 'appmusicoenvivo/crearMusico.html'
+
+
+    def form_valid(self, form):
+        variable = form.save()
+        variable.usuario = self.request.user
+        variable.save()
+        return redirect('perfilexitoso')
 
 class musicoList(ListView):
     model = Musico
     template_name = 'appmusicoenvivo/musicos.html'
-    paginate_by = 2
+    paginate_by = 6
 
 class perfilMusico(ListView):
     template_name = 'appmusicoenvivo/perfilMusico.html'
@@ -203,21 +213,22 @@ def searchM(request):
 
 #----- Local ------
 
-def formularioLocal(request):
-    if request.method == 'POST':
-        form = localForm(request.POST, request.FILES or None)
-        if form.is_valid():
-            variable = form.save()
-            variable.usuario = request.user
-            variable.save()
-            return redirect('perfilexitoso')
-    else:
-        form= localForm()
-    return render(request,'appmusicoenvivo/crearLocal.html', {'form':form},)
+class formularioLocal(CreateView):
+    model = Local
+    form_class = localForm
+    template_name = 'appmusicoenvivo/crearLocal.html'
+
+
+    def form_valid(self, form):
+        variable = form.save()
+        variable.usuario = self.request.user
+        variable.save()
+        return redirect('perfilexitoso')
 
 class localList(ListView):
     model = Local
     template_name = 'appmusicoenvivo/locales.html'
+    paginate_by = 6
 
 class perfilLocal(ListView):
     template_name = 'appmusicoenvivo/perfilLocal.html'
@@ -247,3 +258,4 @@ def searchL(request):
     local_filter = LocalFilter(request.GET, queryset=local_list)
 
     return render(request, 'appmusicoenvivo/searchL.html', {'filter': local_filter,'total':local_list})
+

@@ -11,7 +11,7 @@
   </form>
 {% if filter.qs.count == total.count %}
     <div class="noResults">
-    <p><b>No se encontraron perfiles de Local</b> </p>
+    <p><b>No se encontraron perfiles de Local</b> </p><br>
     </div>
 {% else %}
     <div class="resultadosBusqueda">
@@ -36,7 +36,7 @@
             </tr>
             {% endfor %}
         </tbody>
-        </table>
+        </table><br>
     </div>
 {% endif %}
 

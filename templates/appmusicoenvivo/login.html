@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
+<main class="mainlog"><br><br>
         <form id="login" method="post">{% csrf_token %}
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
@@ -27,5 +28,6 @@
             <br>
             <p> ¿Aun no tienes una cuenta? </p>
             <a href={% url 'registrar' %}, class="btn btn-primary ">Registrate</a>
-        </form>
+        </form><br>
+    </main>
 {% endblock %}
